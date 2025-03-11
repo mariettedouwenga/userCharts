@@ -14,7 +14,7 @@ with dataset:
     st.header("Infor LN user dataset")
     st.text("More information about users")
     #userData = opxl.open('UsersData05032025.xlsx')
-    userData = pd.read_csv('UsersData05032025.csv')
+    userData = pd.read_csv("UsersData05032025.csv", encoding="ISO-8859-1")
     st.write(userData.head())
     
 
