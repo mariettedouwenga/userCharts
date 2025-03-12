@@ -26,8 +26,9 @@ with dataset:
     st.bar_chart(activeUsers)
     
     st.subheader("User Login")
-    userLogin = pd.DataFrame(userData['LastLogin'].value_counts()).head(20)
-    st.bar_chart(userLogin)
+    createUsers = pd.DataFrame(userData['CreatedDate'].value_counts()).head(20)
+    st.bar_chart(createUsers)
+    
 
 with features:
     st.header("Features")
