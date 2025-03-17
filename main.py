@@ -43,7 +43,9 @@ with header:
 with dataset:
     #st.header("Infor LN user dataset")
     st.text("Data exported from OS -> Security -> Admin long running actions")
-    st.text("The information provided includes data spanning from 2023 to 2025. Upon review, it was evident that the data required significant cleanup, which subsequently raised several questions.")
+    st.text("The information provided includes data spanning from 2024 to 2025. Upon review, it was evident that the data required significant cleanup.")
+    st.divider()
+
     userData = getData("UsersData05032025.xlsx")
 
     #Adding colums for Creation Date (year, month, day) to the userData dataframe
@@ -51,7 +53,8 @@ with dataset:
     userData.loc[:,"cYear"] = userData["Created Date"].dt.year
     #Add column lYear to the userData table to extract the year form the LastLogin Date column
     userData.loc[:,"lYear"] = userData["LastLogin Date"].dt.year
-      
+    st.divider
+
 #New dataset USER LOGIN per day
     userLogin = getCreate("UserLogin.xlsx")    
 
@@ -74,6 +77,7 @@ with dataset:
     fig_ulYear = px.line(userLogin, y="UsersLoggedIn", x="LoginDate", range_y=[0,200])
     fig_ulYear.update_layout(width=800)
     st.write(fig_ulYear)
+    st.divider
 
 #New dataset USER CREATED per day
     userCreate = getCreate("UserCreate.xlsx")    
@@ -93,11 +97,15 @@ with dataset:
     #Filter the dataset 
     userCreate = userCreate[userCreate["cdYear"] == cdyear]
 
-    fig3_cdYear = px.line(userCreate, y="UserCreated", x="CreateDate", range_y=[0,2500])
+    fig3_cdYear = px.line(userCreate, y="UserCreated", x="CreateDate", range_y=[0,350])
 
     fig3_cdYear.update_layout(width=800)
     st.write(fig3_cdYear)
 
+    st.text("On July 18, 2024, an outlier of 1,553 users was recorded, and on March 21, 2024, another outlier of 2,520 users was observed. These figures are not depicted in the graphic for visualization purposes.")
+    st.text("An average of 7 users were created per day in 2024")
+    st.divider
+    
 #Active USERS PER DEPARTMENT according to created date
     deptLogin = getLoginDept("Department.xlsx")
     deptLogin.loc[:,"ldeptYear"] = deptLogin["CreatedDateOnly"].dt.year
