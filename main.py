@@ -53,7 +53,7 @@ with dataset:
     userData.loc[:,"cYear"] = userData["Created Date"].dt.year
     #Add column lYear to the userData table to extract the year form the LastLogin Date column
     userData.loc[:,"lYear"] = userData["LastLogin Date"].dt.year
-    st.divider
+    
 
 #New dataset USER LOGIN per day
     userLogin = getCreate("UserLogin.xlsx")    
@@ -77,7 +77,7 @@ with dataset:
     fig_ulYear = px.line(userLogin, y="UsersLoggedIn", x="LoginDate", range_y=[0,200])
     fig_ulYear.update_layout(width=800)
     st.write(fig_ulYear)
-    st.divider
+    st.divider()
 
 #New dataset USER CREATED per day
     userCreate = getCreate("UserCreate.xlsx")    
@@ -104,8 +104,8 @@ with dataset:
 
     st.text("On July 18, 2024, an outlier of 1,553 users was recorded, and on March 21, 2024, another outlier of 2,520 users was observed. These figures are not depicted in the graphic for visualization purposes.")
     st.text("An average of 7 users were created per day in 2024")
-    st.divider
-    
+    st.divider()
+
 #Active USERS PER DEPARTMENT according to created date
     deptLogin = getLoginDept("Department.xlsx")
     deptLogin.loc[:,"ldeptYear"] = deptLogin["CreatedDateOnly"].dt.year
